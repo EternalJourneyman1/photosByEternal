@@ -1,31 +1,83 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/gallery">Image Gallery</router-link>
+  <div id="app">
+    <div id="nav">
+      <div id="branding">
+        <img alt="Photos By Eternal logo" src="./assets/logo.png">
+        <h1>PHOTOS BY ETERNAL</h1>
+      </div>
+      <router-link v-if="$route.name === 'ImageDetails'" to="/" id="back-button" data-testid="back-button">Back</router-link>
+    </div>
+    <router-view/>
   </div>
-  <router-view/>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  <style>
+    body {
+      background-color: black;
+    }
 
-#nav {
-  padding: 30px;
-}
+    #app {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+    }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    #nav img {
+      width: 100px;
+      height: 100px;
+    }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+    #nav {
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #branding {
+      display: flex;
+      align-items: center;
+    }
+
+    #back-button {
+      font-weight: bold;
+      background-color: #42b983;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    #back-button:hover {
+      background-color: #368b6d;
+      color: #2c3e50;
+    }
+
+    #back-button:focus {
+      outline: none;
+    }
+
+    @media screen and (max-width: 369px) {
+      #branding {
+        flex-direction: column;
+      }
+
+      #nav {
+        display: flex;
+        flex-direction: column;
+      }
+
+    }
+
+    #branding h1 {
+      margin-left: 10px;
+    }
+
+    #nav a {
+      font-weight: bold;
+      color: #fff;
+      margin-left: 10px;
+    }
+
+  </style>
