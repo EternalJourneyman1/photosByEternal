@@ -26,14 +26,10 @@
 
 <script>
 import store from "@/store/store";
-import VueLazyload from 'vue-lazyload';
 
 
 export default {
   name: 'ImageDetails',
-  directives: {
-    lazyload: VueLazyload.directive,
-  },
   methods: {
     disableContextMenu(event) {
       event.preventDefault();
