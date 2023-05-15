@@ -8,6 +8,7 @@ import './plugins/meta';
 
 Vue.config.productionTip = false
 
+
 Vue.use(VueLazyload, {
   loading: require('../src/assets/loading.gif'), // Placeholder image while the actual image is loading
 });
