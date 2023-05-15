@@ -11,16 +11,11 @@ const mutations = {
     }
 };
 const actions = {
-    // apiUrl: process.env.VUE_APP_API_URL + '/images',
     apiUrl: () => process.env.VUE_APP_API_URL,
-    fetchImages({commit}) {
-        return axios.get(`${actions.apiUrl()}/images`)
+    fetchImages({ commit }) {
+        return axios.get(`${actions.apiUrl()}`)
             .then(response => {
-                const images = response.data.map(image => {
-                    const tags = image.tags || [];
-                    console.log("heres my tags ", tags);
-                    return { ...image, tags };
-                });
+                const images = response.data;
                 commit('setImages', images);
                 return images;
             })
@@ -34,14 +29,26 @@ const actions = {
         if (image) {
             return Promise.resolve(image);
         } else {
-            return axios.get(`${actions.apiUrl()}/${imageId}`)
+            return axios
+                .get(`${actions.apiUrl()}/${imageId}`)
                 .then(response => {
-                    const image = response.data;
-                    const tags = image.tags || [];
-                    console.log("heres my tags ", tags);
-                    const imageWithTags = { ...image, tags };
-                    commit('setImage', imageWithTags);
-                    return imageWithTags;
+                    const fetchedImage = response.data;
+                    commit('setImage', fetchedImage);
+                    return fetchedImage;
+                })
+                .then(fetchedImage => {
+                    // Wait for the image to be stored in the state
+                    return new Promise(resolve => {
+                        const checkImage = () => {
+                            const storedImage = state.images.find(image => image.id === fetchedImage.id);
+                            if (storedImage) {
+                                resolve(storedImage);
+                            } else {
+                                setTimeout(checkImage, 100);
+                            }
+                        };
+                        checkImage();
+                    });
                 })
                 .catch(error => {
                     console.error(error);
@@ -49,6 +56,8 @@ const actions = {
                 });
         }
     }
+
+
 };
 const getters = {
     getImages(state) {

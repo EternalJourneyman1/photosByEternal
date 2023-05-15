@@ -2,16 +2,23 @@
   <div class="imagedetails-container">
     <div class="image-container">
       <template v-if="image">
-      <img :src="image.url" alt="Image" class="responsive-image" @contextmenu="disableContextMenu">
+        <img :src="image.url" alt="Image" class="responsive-image" @contextmenu="disableContextMenu" />
       </template>
       <template v-else>
-        <img src="loading.gif" alt="Loading" class="responsive-image" />
+        <img src="../assets/loading.gif" alt="Loading" class="responsive-image" style="background-color: black" />
       </template>
     </div>
     <div class="tags-container">
-      <div v-for="tag in image.tags" :key="tag" class="tag">
-        {{ tag }}
-      </div>
+      <template v-if="image && image.tags && image.tags.length">
+        <div v-for="tag in image.tags" :key="tag" class="tag">
+          {{ tag }}
+        </div>
+      </template>
+      <template v-else>
+        <div class="tag">
+          No Tag
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -19,9 +26,14 @@
 
 <script>
 import store from "@/store/store";
+import VueLazyload from 'vue-lazyload';
+
 
 export default {
   name: 'ImageDetails',
+  directives: {
+    lazyload: VueLazyload.directive,
+  },
   methods: {
     disableContextMenu(event) {
       event.preventDefault();
@@ -38,7 +50,9 @@ export default {
   computed: {
     image() {
       const imageId = this.$route.params.id;
-      return store.getters.getImageById(imageId);
+      const image = store.getters.getImageById(imageId)
+      console.log(image)
+      return image;
     }
   },
   created() {
@@ -71,6 +85,8 @@ export default {
 
 .responsive-image {
   border: 5px inset #2c3e50;
+  width: 600px;
+  height: 600px;
   max-width: 500px;
   max-height: 500px;
 }

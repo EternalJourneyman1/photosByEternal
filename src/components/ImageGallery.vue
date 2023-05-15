@@ -1,18 +1,15 @@
 <template>
   <div class="image-gallery">
     <div class="image-item" v-for="(image, index) in images" :key="index" @click="toggleOverlay(index)">
-      <img :src="image.url" :alt="image.public_id"  @contextmenu="disableContextMenu"/>
+      <img :src="image.url" :alt="image.public_id" @contextmenu="disableContextMenu" />
       <div class="overlay" v-show="currentOverlay === index">
-        <router-link :to="{ name: 'ImageDetails', params: { id: image.public_id, url: image.url }}" class="view-btn"
-                     @click.native.stop="selectImage(image, index)">View
-        </router-link>
+        <router-link :to="{ name: 'ImageDetails', params: { id: image.public_id, url: image.url }}" class="view-btn" @click.native.stop="selectImage(image, index)">View</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
 import store from "@/store/store";
 
 export default {
@@ -20,17 +17,16 @@ export default {
   data() {
     return {
       currentOverlay: null,
-      selectedImage: null
-    }
+      selectedImage: null,
+    };
   },
   computed: {
     images() {
       return store.getters.getImages;
-    }
+    },
   },
   methods: {
     disableContextMenu(event) {
-      console.log(event);
       event.preventDefault();
     },
     toggleOverlay(index) {
@@ -42,13 +38,13 @@ export default {
       this.$ga.event({
         eventCategory: 'Image',
         eventAction: 'View',
-        eventLabel: image.public_id
+        eventLabel: image.public_id,
       });
       this.$router.push({
         path: `/image/${image.public_id}`,
-        query: {selectedImageIndex: index}
+        query: { selectedImageIndex: index },
       });
-    }
+    },
   },
   created() {
     const selectedImageIndex = this.$route.query.selectedImageIndex;
@@ -58,7 +54,7 @@ export default {
 
     this.$ga.event({
       eventCategory: 'Image',
-      eventAction: 'Gallery Load'
+      eventAction: 'Gallery Load',
     });
 
     if (this.images.length <= 1) {
@@ -67,10 +63,9 @@ export default {
             console.error(error);
           });
     }
-  }
+  },
 };
 </script>
-
 
 <style scoped>
 .image-gallery {
@@ -118,4 +113,3 @@ export default {
   cursor: pointer;
 }
 </style>
-

@@ -10,19 +10,31 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      cacheKey: 'home', // Unique cache key for each route
+      cacheDuration: 3600, // Cache duration in seconds (1 hour)
+    },
   },
   {
     path: '/gallery',
     name: 'Image Gallery',
     component: ImageGallery,
-    props: true
+    props: true,
+    meta: {
+      cacheKey: 'gallery',
+      cacheDuration: 3600,
+    },
   },
   {
     path: '/image/:id',
     name: 'ImageDetails',
     component: ImageDetails,
-    props: true
+    props: true,
+    meta: {
+      cacheKey: 'gallery',
+      cacheDuration: 3600,
+    },
   }
 ];
 
