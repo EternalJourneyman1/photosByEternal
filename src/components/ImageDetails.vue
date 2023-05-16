@@ -75,10 +75,12 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+
+
 }
 
 .responsive-image {
-  border: 5px inset #2c3e50;
   max-width: 100%;
   max-height: 100%;
   height: auto;
