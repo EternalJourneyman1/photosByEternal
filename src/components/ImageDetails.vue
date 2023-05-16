@@ -73,18 +73,16 @@ export default {
 }
 
 .image-container {
-  width: 600px;
-  height: 600px;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .responsive-image {
   border: 5px inset #2c3e50;
-  width: 600px;
-  height: 600px;
-  max-width: 500px;
-  max-height: 500px;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
 }
 
 .tags-container {
