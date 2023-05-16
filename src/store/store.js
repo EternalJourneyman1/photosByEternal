@@ -11,7 +11,11 @@ const mutations = {
     }
 };
 const actions = {
-    apiUrl: () => process.env.VUE_APP_API_URL,
+    apiUrl: () => {
+        const app_url = process.env.VUE_APP_API_URL
+        console.log(app_url)
+        return app_url
+    },
     fetchImages({ commit }) {
         return axios.get(`${actions.apiUrl()}`)
             .then(response => {
