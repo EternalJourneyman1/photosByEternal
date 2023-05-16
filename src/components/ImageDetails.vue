@@ -2,10 +2,10 @@
   <div class="imagedetails-container">
     <div class="image-container">
       <template v-if="image">
-        <img :src="image.url" alt="Image" class="responsive-image" @contextmenu="disableContextMenu" />
+        <img :src="image.url" alt="Image" class="responsive-image" @contextmenu="disableContextMenu"/>
       </template>
       <template v-else>
-        <img src="../assets/loading.gif" alt="Loading" class="responsive-image" style="background-color: black" />
+        <img src="../assets/loading.gif" alt="Loading" class="responsive-image" style="background-color: black"/>
       </template>
     </div>
     <div class="tags-container">
@@ -46,9 +46,8 @@ export default {
   computed: {
     image() {
       const imageId = this.$route.params.id;
-      const image = store.getters.getImageById(imageId)
-      console.log(image)
-      return image;
+      const image = this.$store.getters.getImageById(imageId);
+      return image ? image : null;
     }
   },
   created() {
