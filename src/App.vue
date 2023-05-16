@@ -5,8 +5,10 @@
         <img alt="Photos By Eternal logo" src="./assets/logo.png">
         <h1>PHOTOS BY ETERNAL</h1>
       </div>
-      <router-link v-if="$route.name === 'ImageDetails'" to="/" id="back-button" data-testid="back-button">Back
-      </router-link>
+      <div id="back-button-container">
+        <router-link v-if="$route.name === 'ImageDetails'" to="/" id="back-button" data-testid="back-button">Back
+        </router-link>
+      </div>
     </div>
     <div id="content">
       <router-view/>
@@ -40,6 +42,9 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   z-index: 9999;
   background-color: black;
 }
@@ -47,6 +52,11 @@ body {
 #branding {
   display: flex;
   align-items: center;
+  margin-left: 20px;
+}
+
+#back-button-container {
+  margin-right: 20px;
 }
 
 #back-button {
@@ -55,17 +65,12 @@ body {
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none;
+  color: #fff;
 }
 
 #back-button:hover {
   background-color: #368b6d;
-  color: #2c3e50;
 }
-
-#back-button:focus {
-  outline: none;
-}
-
 
 @media screen and (max-width: 369px) {
   #branding {
@@ -77,6 +82,21 @@ body {
     flex-direction: column;
   }
 
+  #back-button-container {
+    margin-top: 10px;
+    margin-right: 0;
+    align-self: flex-end;
+  }
+
+  #branding h1 {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  #nav a {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }
 
 #branding h1 {
@@ -88,5 +108,4 @@ body {
   color: #fff;
   margin-left: 10px;
 }
-
 </style>
