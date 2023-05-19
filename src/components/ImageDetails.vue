@@ -82,7 +82,7 @@ export default {
 
 .responsive-image {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 80vh;
   height: auto;
 }
 
