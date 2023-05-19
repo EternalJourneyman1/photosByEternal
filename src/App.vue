@@ -13,6 +13,21 @@
     <div id="content">
       <router-view/>
     </div>
+    <div id="footer">
+      <div class="footer-content">
+        <div class="copyright">
+          © 2023 Photos By Eternal
+        </div>
+<!--        <div class="links">-->
+<!--          <router-link to="/contact">Contact</router-link>-->
+<!--        </div>-->
+        <div class="social-media">
+
+          <a href="https://instagram.com/photosbyeternal"
+                                               target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -49,6 +64,17 @@ body {
   background-color: black;
 }
 
+#branding h1 {
+  margin-left: 10px;
+}
+
+
+#nav a {
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10px;
+}
+
 #branding {
   display: flex;
   align-items: center;
@@ -72,13 +98,49 @@ body {
   background-color: #368b6d;
 }
 
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background-color: black;
+  height: 100px;
+  padding: 0 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.copyright, .links, .social-media {
+  color: #2c3e50;
+}
+
+.social-media a {
+  color: #2c3e50;
+  /*margin-left: 10px;*/
+  padding-right: 10px;
+  text-decoration: none;
+}
+
+.social-media a:hover {
+  color: #42b983; /* Change color on hover */
+}
+
 @media screen and (max-width: 369px) {
   #branding {
     flex-direction: column;
+    margin-left: 0px;
   }
 
   #nav {
-    display: flex;
     flex-direction: column;
   }
 
@@ -97,15 +159,24 @@ body {
     margin-left: 0;
     margin-top: 10px;
   }
-}
 
-#branding h1 {
-  margin-left: 10px;
-}
+  #footer {
+    flex-direction: column; /* Stack footer items vertically on small screens */
+    padding: 10px 0; /* Adjust padding as needed */
+  }
 
-#nav a {
-  font-weight: bold;
-  color: #fff;
-  margin-left: 10px;
+  .footer-content {
+    flex-direction: column; /* Stack footer content vertically */
+    align-items: center; /* Align items to center */
+  }
+
+  .copyright, .links, .social-media {
+    margin-bottom: 10px; /* Add space between items */
+  }
+
+  .social-media a {
+    margin-left: 0; /* Remove left margin */
+    margin-top: 10px;
+  }
 }
 </style>

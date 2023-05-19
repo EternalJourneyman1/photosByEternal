@@ -52,7 +52,7 @@ export default {
       const imageHeight = rect.bottom - rect.top;
       const visibleHeight = Math.min(window.innerHeight - navHeight, rect.bottom) - Math.max(navHeight, rect.top);
       const visibilityRatio = visibleHeight / imageHeight;
-      return visibilityRatio < 0.4;
+      return visibilityRatio < 0.3;
     },
     selectImage(image, index) {
       if (!this.isPartiallyHidden(index)) {

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from "../components/Home";
 import ImageGallery from "../components/ImageGallery";
 import ImageDetails from "../components/ImageDetails";
+import Contact from "../components/Contact";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
       cacheKey: 'home', // Unique cache key for each route
       cacheDuration: 3600, // Cache duration in seconds (1 hour)
     },
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact,
   },
   {
     path: '/gallery',
